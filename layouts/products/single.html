@@ -36,8 +36,10 @@
           {{end}}>{{i18n "add_to_cart"}}
         </button>
         {{ else }}
-        {{ with .Params.button_link}}
-        <a class="btn btn-main mb-5" href="{{ . | absURL }}">{{i18n "add_to_cart"}}</a>
+        {{ if .Params.download }}
+          <a class="btn btn-main mb-5" href="{{ .Params.download_link | absURL }}">{{ i18n "download" }}</a>
+        {{ else }}
+          <a class="btn btn-main mb-5" href="{{ . | absURL }}">{{ i18n "add_to_cart" }}</a>
         {{ end }}
         {{ end }}
 
