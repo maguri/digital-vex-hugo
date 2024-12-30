@@ -1,3 +1,5 @@
+{{ $data := index .Site.Data .Site.Language.Lang }}
+
 <!-- navigation -->
 <header class="sticky-top bg-white">
   <div class="container">
@@ -8,13 +10,19 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
+      <div class="collapse navbar-collapse text-center mt-4" id="navigation">
         <ul class="navbar-nav ml-auto">
           {{ range site.Menus.main }}
           <li class="nav-item">
             <a class="nav-link" href="{{if .Pre}}{{site.BaseURL | relLangURL}}{{.Pre}}{{ .URL }}{{else}}{{.URL | absLangURL}}{{end}}">{{ .Name }}</a>
           </li>
           {{ end }}
+          {{- with $data.homepage.demo }}
+            <li class="nav-item">
+              <a href="{{.link}}" class="nav-link btn btn-main btn-main-m">{{.label}}</a>
+            </li>
+          {{- end }}
+          
         </ul>
         <!-- Language List -->
         {{ if .IsTranslated }}
